@@ -24,6 +24,8 @@
         <mapstruct.version>1.4.0.Beta3</mapstruct.version>
         <swagger.ui.version>3.28.0</swagger.ui.version>
         <testcontainers.version>1.14.3</testcontainers.version>
+
+        <sonar.exclusions>src/main/java/**/GislaApplication.java</sonar.exclusions>
     </properties>
 
     <dependencies>
