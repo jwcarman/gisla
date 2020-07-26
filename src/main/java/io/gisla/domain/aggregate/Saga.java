@@ -34,10 +34,10 @@ public class Saga {
 
     @CommandHandler
     public Saga(CreateSagaCommand cmd, IdService idService) {
-        final String sagaId = idService.generateId();
-        log.info("Creating saga \"{}\".", sagaId);
+        final String newSagaId = idService.generateId();
+        log.info("Creating saga \"{}\".", newSagaId);
         apply(SagaCreatedEvent.builder()
-                .sagaId(sagaId)
+                .sagaId(newSagaId)
                 .transactions(cmd.getTransactions())
                 .build());
     }
@@ -60,6 +60,6 @@ public class Saga {
 
     @EventSourcingHandler
     public void on(SagaStartedEvent event) {
-
+        // Do nothing for now.
     }
 }
