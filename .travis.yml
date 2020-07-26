@@ -7,8 +7,13 @@ jdk:
   - openjdk11
 git:
   depth: false
+addons:
+  sonarcloud:
+    organization: "jwcarman"
+    token:
+      secure: "IyRA9/WjW30S4PfMNolElEIMc6iR+te02TxjhOBSHzBw6nsB2ZgAMiTGSXwVnsy9VJzoKxFp0x84dGIJZj26rjc3adEItznQbl3Km9WsWbByHiFYzNHCP/ZApAGXIIVN5bHyy8OjLta5SQKEww5qmHwkeylPSAkfAf4m2hnK9U9AhTKeJWYHIkM8viIyi6uszrRQk2p5fPhbxBggQh0+9P2KVhgq2gEs0NRl/Slp3i4PTiCBh/SHpQEfzqARUZpmGLiRppsfm5dYSSKO8Gznrp+XFBiEmkxvKok2csPjytmVx78fk4nAp0eTDNBYremx8i63PRxktBWZ5p+dAB/VHAvErS7RWSJ2RrRuL/tqfEP4f3NqToL77T7KT9Eqo5dtC+PdoanbBZrWgIG8l8N9T2CdrHm38UB+ObRtTNHGWHQcAAC56FRapFoZeRpj5FOqDBwZomY3BzsZyNmJ4yQN7oAKyeBckbz/Du6oKhyzoYOqQ+KuwguTvhXzlvxz6E6zPky9KXzmzd23n0hG9NasKll6uLemKZOLLVsXRujjne5vflfNZ0Ccw48uL6efN3DsUyhB+IrOZdD3z80XIZBUQPFAV01FLcdpqRNPsHa6kOdWIj5NnfzjzfxHnQIzsRi44Xkp3VcYHf2uRnf50/DewYLEYR6re2gtdfhjZYaNjw4="
 script:
-  - mvn clean install
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=jwcarman_gisla
 cache:
   directories:
     - '$HOME/.m2/repository'
