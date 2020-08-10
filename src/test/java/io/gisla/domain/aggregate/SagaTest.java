@@ -16,6 +16,7 @@
 
 package io.gisla.domain.aggregate;
 
+import com.google.common.base.VerifyException;
 import com.google.gson.JsonPrimitive;
 import io.gisla.domain.command.CompleteTransactionCommand;
 import io.gisla.domain.command.CreateSagaCommand;
@@ -140,5 +141,40 @@ class SagaTest {
                     assertThat(saga.getPendingTransactions()).isEmpty();
                     assertThat(saga.getCompletedTransactions()).hasSize(1);
                 });
+    }
+
+    @Test
+    void completeTransactionCommandWithWrongTransactionId() {
+        final JsonPrimitive transactionSpec = new JsonPrimitive("bar");
+        final JsonPrimitive compensationSpec = new JsonPrimitive("rab");
+        fixture.given(SagaCreatedEvent.builder()
+                .sagaId("12345")
+                .pendingTransaction(PendingTransaction.builder()
+                        .transactionId("a")
+                        .transactionType("foo")
+                        .transactionSpec(transactionSpec)
+                        .build())
+                .build())
+                .when(CompleteTransactionCommand.builder()
+                        .sagaId("12345")
+                        .transactionId("ZZZZZ")
+                        .compensationSpec(compensationSpec)
+                        .build())
+                .expectException(VerifyException.class);
+    }
+
+    @Test
+    void completeTransactionCommandWhenNoPendingTransactions() {
+        final JsonPrimitive transactionSpec = new JsonPrimitive("bar");
+        final JsonPrimitive compensationSpec = new JsonPrimitive("rab");
+        fixture.given(SagaCreatedEvent.builder()
+                .sagaId("12345")
+                .build())
+                .when(CompleteTransactionCommand.builder()
+                        .sagaId("12345")
+                        .transactionId("a")
+                        .compensationSpec(compensationSpec)
+                        .build())
+                .expectException(VerifyException.class);
     }
 }
