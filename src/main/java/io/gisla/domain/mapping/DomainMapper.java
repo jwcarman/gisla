@@ -14,25 +14,24 @@
  * limitations under the License.
  */
 
-package io.gisla.web;
+package io.gisla.domain.mapping;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import io.gisla.domain.command.CompleteTransactionCommand;
+import io.gisla.domain.event.TransactionCompletedEvent;
+import io.gisla.domain.message.ExecuteTransactionMessage;
+import io.gisla.domain.value.PendingTransaction;
+import io.gisla.domain.value.TransactionDescriptor;
+import org.mapstruct.Mapper;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-
-@Path("/sagas")
-public interface SagasResource {
+@Mapper
+public interface DomainMapper {
 
 //----------------------------------------------------------------------------------------------------------------------
 // Other Methods
 //----------------------------------------------------------------------------------------------------------------------
 
-    @POST
-    @Path("")
-    @Consumes(APPLICATION_JSON)
-    @Produces(APPLICATION_JSON)
-    CreateSagaResponse createSaga(CreateSagaRequest request);
+    ExecuteTransactionMessage mapPendingTransaction(String sagaId, PendingTransaction pendingTransaction);
+
+    TransactionCompletedEvent mapToEvent(CompleteTransactionCommand command);
+    PendingTransaction mapTransactionDescriptor(String transactionId, TransactionDescriptor descriptor);
 }

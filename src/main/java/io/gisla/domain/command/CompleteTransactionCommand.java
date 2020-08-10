@@ -14,25 +14,25 @@
  * limitations under the License.
  */
 
-package io.gisla.web;
+package io.gisla.domain.command;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import com.google.gson.JsonElement;
+import lombok.Builder;
+import lombok.Value;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-
-@Path("/sagas")
-public interface SagasResource {
+@Value
+@Builder
+public class CompleteTransactionCommand {
 
 //----------------------------------------------------------------------------------------------------------------------
-// Other Methods
+// Fields
 //----------------------------------------------------------------------------------------------------------------------
 
-    @POST
-    @Path("")
-    @Consumes(APPLICATION_JSON)
-    @Produces(APPLICATION_JSON)
-    CreateSagaResponse createSaga(CreateSagaRequest request);
+    @TargetAggregateIdentifier
+    String sagaId;
+
+    String transactionId;
+
+    JsonElement compensationSpec;
 }

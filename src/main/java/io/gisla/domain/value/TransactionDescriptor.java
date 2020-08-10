@@ -23,6 +23,11 @@ import lombok.Value;
 @Value
 @Builder
 public class TransactionDescriptor {
-    String type;
-    JsonElement spec;
+
+//----------------------------------------------------------------------------------------------------------------------
+// Fields
+//----------------------------------------------------------------------------------------------------------------------
+
+    String transactionType;
+    JsonElement transactionSpec;
 }

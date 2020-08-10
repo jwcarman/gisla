@@ -28,11 +28,16 @@ import lombok.RequiredArgsConstructor;
 public class DefaultSagaResource implements SagasResource{
 
 //----------------------------------------------------------------------------------------------------------------------
-// SagasResource Implementation
+// Fields
 //----------------------------------------------------------------------------------------------------------------------
 
     private final SagaService sagaService;
     private final WebMapper webMapper;
+
+//----------------------------------------------------------------------------------------------------------------------
+// SagasResource Implementation
+//----------------------------------------------------------------------------------------------------------------------
+
 
     @Override
     public CreateSagaResponse createSaga(CreateSagaRequest request) {

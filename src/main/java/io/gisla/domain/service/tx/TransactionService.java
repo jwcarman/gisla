@@ -16,8 +16,13 @@
 
 package io.gisla.domain.service.tx;
 
-import com.google.gson.JsonElement;
+import io.gisla.domain.message.ExecuteTransactionMessage;
 
 public interface TransactionService {
-    void executeTransaction(String type, JsonElement spec);
+
+//----------------------------------------------------------------------------------------------------------------------
+// Other Methods
+//----------------------------------------------------------------------------------------------------------------------
+
+    void executeTransaction(ExecuteTransactionMessage msg);
 }

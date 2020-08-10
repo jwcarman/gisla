@@ -58,7 +58,6 @@ public class GsonSerializer implements Serializer {
 // Serializer Implementation
 //----------------------------------------------------------------------------------------------------------------------
 
-
     @Override
     public <T> SerializedObject<T> serialize(Object object, Class<T> expectedRepresentation) {
         final String json = gson.toJson(object);

@@ -18,7 +18,7 @@ package io.gisla.domain.event;
 
 import java.util.List;
 
-import io.gisla.domain.value.TransactionDescriptor;
+import io.gisla.domain.value.PendingTransaction;
 import lombok.Builder;
 import lombok.Singular;
 import lombok.Value;
@@ -34,6 +34,6 @@ public class SagaCreatedEvent {
     String sagaId;
 
     @Singular
-    List<TransactionDescriptor> transactions;
+    List<PendingTransaction> pendingTransactions;
 }
 

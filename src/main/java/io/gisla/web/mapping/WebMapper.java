@@ -23,5 +23,9 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface WebMapper {
 
+//----------------------------------------------------------------------------------------------------------------------
+// Other Methods
+//----------------------------------------------------------------------------------------------------------------------
+
     TransactionDescriptor fromDto(TransactionDescriptorDTO dto);
 }

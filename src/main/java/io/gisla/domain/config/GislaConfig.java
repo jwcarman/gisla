@@ -20,12 +20,18 @@ import io.gisla.domain.service.id.DefaultIdService;
 import io.gisla.domain.service.id.IdService;
 import io.gisla.domain.service.saga.DefaultSagaService;
 import io.gisla.domain.service.saga.SagaService;
+import io.gisla.domain.service.tx.DefaultTransactionService;
+import io.gisla.domain.service.tx.TransactionService;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class GislaConfig {
+
+//----------------------------------------------------------------------------------------------------------------------
+// Other Methods
+//----------------------------------------------------------------------------------------------------------------------
 
     @Bean
     public IdService idService() {
@@ -35,5 +41,10 @@ public class GislaConfig {
     @Bean
     public SagaService sagaService(CommandGateway commandGateway) {
         return new DefaultSagaService(commandGateway);
+    }
+
+    @Bean
+    public TransactionService transactionService() {
+        return new DefaultTransactionService();
     }
 }

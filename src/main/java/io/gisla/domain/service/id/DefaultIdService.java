@@ -19,6 +19,11 @@ package io.gisla.domain.service.id;
 import java.util.UUID;
 
 public class DefaultIdService implements IdService {
+
+//----------------------------------------------------------------------------------------------------------------------
+// IdService Implementation
+//----------------------------------------------------------------------------------------------------------------------
+
     @Override
     public String generateId() {
         return UUID.randomUUID().toString();
