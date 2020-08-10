@@ -18,6 +18,7 @@ package io.gisla.domain.service.tx;
 
 import com.google.gson.JsonPrimitive;
 import io.gisla.domain.message.ExecuteTransactionMessage;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class DefaultTransactionServiceTest {
@@ -25,11 +26,13 @@ class DefaultTransactionServiceTest {
     @Test
     void executeTransaction() {
         final DefaultTransactionService service = new DefaultTransactionService();
-        service.executeTransaction(ExecuteTransactionMessage.builder()
+        Assertions.assertThatCode(() -> service.executeTransaction(ExecuteTransactionMessage.builder()
                 .sagaId("12345")
                 .transactionId("abc")
                 .transactionType("foo")
                 .transactionSpec(new JsonPrimitive("foo"))
-                .build());
+                .build()))
+                .doesNotThrowAnyException();
+
     }
 }

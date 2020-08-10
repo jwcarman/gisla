@@ -79,8 +79,9 @@ class GsonSerializerTest {
                         .build())
                 .build();
         final Object deserialized = serializer.deserialize(new SimpleSerializedObject<>(gson.toJson(command), String.class, CreateSagaCommand.class.getName(), "1.0"));
-        assertThat(deserialized).isInstanceOf(CreateSagaCommand.class);
-        assertThat(deserialized).isEqualTo(command);
+        assertThat(deserialized)
+                .isInstanceOf(CreateSagaCommand.class)
+                .isEqualTo(command);
     }
 
     @Test
